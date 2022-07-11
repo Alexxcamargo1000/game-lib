@@ -8,7 +8,11 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     padding: 24px;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Roboto', serif;
+  }
+
+  button {
+    font-family: 'Roboto', serif;
   }
 
   h2 {

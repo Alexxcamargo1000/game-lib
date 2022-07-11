@@ -7,6 +7,7 @@ export const Container = styled.div`
   margin: 0 auto;
   min-height: 100vh;
   background: url(${bgImg});
+  padding-inline: 40px;
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 16px;
@@ -15,7 +16,6 @@ export const Container = styled.div`
 
 
   > main {
-    padding-left: 80px;
     display: grid;
     grid-template-columns: 300px auto;
     grid-template-rows: minmax(350px, auto) minmax(450px, auto) minmax(450px, auto);
@@ -31,7 +31,7 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 40px 80px;
+  padding-block: 40px; 
 
   > img {
     width: 96px;
@@ -89,9 +89,23 @@ export const Favorites = styled.div`
   }
 `;
 
-export const Table = styled.div`
-  grid-area: table;
+export const TableWrapper = styled.div`
+  padding-left: 105px;
+  margin-top: 60px;
+  
+
+  > .scroll {
+    max-height: 400px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+    display: none;
+  }
+  }
 `;
+
+
+
 
 export const Form = styled.div`
   grid-area: form;

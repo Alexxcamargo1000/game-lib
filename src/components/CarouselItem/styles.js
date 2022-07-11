@@ -8,5 +8,6 @@ export const Container = styled.div`
     height: 256px;
     object-fit: cover;
     border-radius: 8px;
+    box-shadow: ${({ theme }) => theme.shadow};
   }
 `;
