@@ -1,5 +1,7 @@
 import { Logo } from "../../components/Logo";
 import { Container, Header, MainGame, Favorites, Table, Form } from "./styles";
+import { Carousel } from '../../components/Carousel';
+import { CarouselItem } from '../../components/CarouselItem';
 
 export function Home() {
   return (
@@ -27,6 +29,14 @@ export function Home() {
         </MainGame>
         <Favorites>
           <h2>Favoritos</h2>
+          <Carousel>
+            <CarouselItem />
+            <CarouselItem img="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_auto/ncom/en_US/games/switch/f/fall-guys-switch/hero" />
+            <CarouselItem />
+            <CarouselItem />
+            <CarouselItem />
+            <CarouselItem />
+          </Carousel>
         </Favorites>
 
         <Table></Table>

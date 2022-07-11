@@ -83,6 +83,10 @@ export const MainGame = styled.div`
 export const Favorites = styled.div`
   grid-area: favorites;
   padding-left: 105px;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const Table = styled.div`
