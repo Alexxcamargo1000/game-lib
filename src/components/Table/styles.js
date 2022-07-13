@@ -41,12 +41,21 @@ export const Container = styled.table`
 
     tr:nth-child(even) {
       background-color: ${({ theme }) => theme.colors.GRAY_500};
+
+   
     }
     tr:nth-child(odd) {
       background-color: ${({ theme }) => theme.colors.GRAY_600};
+      
+      td {
+        border-block: 1px solid #B9B7B7;
+      }
     }
 
     tr:last-child  {
+      td {
+        border-bottom: none;
+      }
 
       > td:nth-child(4) {
         border-radius: 0 0 16px 0;

@@ -4,8 +4,14 @@ import { Carousel } from "../../components/Carousel";
 import { CarouselItem } from "../../components/CarouselItem";
 import {Table} from '../../components/Table'
 import {Tr} from '../../components/Table/Tr'
+import { Input } from "../../components/Input";
+import { Select } from "../../components/Select";
 
 export function Home() {
+  const options = [
+    {value: 'sim'},
+    {value: 'não'},
+  ]
   return (
     <Container>
       <Header>
@@ -52,7 +58,26 @@ export function Home() {
             </Table>
           </div>
         </TableWrapper>
-        <Form></Form>
+        <Form>
+            <legend>Add jogo</legend>
+            <fieldset>
+              <Input id="name" title="Nome" type="text"/>
+              <Input id="url_img" title="URL da imagem" type="text"/>
+              <Select id="platform" title="Plataforma"/>
+              <Input id="date" title="Lançamento" type="date"/>
+            </fieldset>
+
+            <fieldset>
+              <Input id="link" title="Link da loja" type="text"/>
+              <div>
+                <Select id="mainGame" title="Adicionar no mais esperado" options={options}/>
+                <Select id="favorites" title="Adicionar nos Favoritos" options={options}/>
+              </div>
+
+              <button>Salvar</button>
+            </fieldset>
+
+        </Form>
       </main>
     </Container>
   );

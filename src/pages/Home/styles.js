@@ -92,14 +92,18 @@ export const Favorites = styled.div`
 export const TableWrapper = styled.div`
   padding-left: 105px;
   margin-top: 60px;
+
+
   
 
   > .scroll {
-    max-height: 400px;
+    max-width: 850px;
+    max-height: 428px;
+    border-radius: 0 0 16px 16px;
     overflow-y: auto;
 
     &::-webkit-scrollbar {
-    display: none;
+    width: 4px;
   }
   }
 `;
@@ -107,6 +111,12 @@ export const TableWrapper = styled.div`
 
 
 
-export const Form = styled.div`
+export const Form = styled.form`
   grid-area: form;
+  margin-top: 88px;
+  margin-bottom: 40px;
+  padding: 16px 24px;
+  background-color: white;
+
+
 `;
