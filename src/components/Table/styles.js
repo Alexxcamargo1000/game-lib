@@ -69,6 +69,7 @@ export const Container = styled.table`
       color: ${({ theme }) => theme.colors.GRAY};
       padding: 16px;
       text-align: center;
+      text-transform: uppercase;
       div {
         display: flex;
         align-items: center;

@@ -8,17 +8,17 @@ export const Container = styled.div`
   min-height: 100vh;
   background: url(${bgImg});
   padding-inline: 40px;
+  padding-bottom: 80px;
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 16px;
   box-shadow: ${({ theme }) => theme.shadow};
 
 
-
   > main {
     display: grid;
     grid-template-columns: 300px auto;
-    grid-template-rows: minmax(350px, auto) minmax(450px, auto) minmax(450px, auto);
+    grid-template-rows: minmax(350px, auto) auto minmax(450px, auto);
     grid-template-areas:
       "main favorites"
       "main table"
@@ -31,7 +31,7 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-block: 40px; 
+  padding-block: 40px;
 
   > img {
     width: 96px;
@@ -40,7 +40,7 @@ export const Header = styled.header`
   }
 `;
 
-export const MainGame = styled.div`
+export const ExpectedGame = styled.div`
   grid-area: main;
   width: 300px;
 
@@ -93,9 +93,6 @@ export const TableWrapper = styled.div`
   padding-left: 105px;
   margin-top: 60px;
 
-
-  
-
   > .scroll {
     max-width: 850px;
     max-height: 428px;
@@ -103,20 +100,70 @@ export const TableWrapper = styled.div`
     overflow-y: auto;
 
     &::-webkit-scrollbar {
-    width: 4px;
-  }
+      width: 4px;
+    }
   }
 `;
-
-
-
 
 export const Form = styled.form`
   grid-area: form;
   margin-top: 88px;
+  margin-inline:100px;
+  border-radius: 16px;
   margin-bottom: 40px;
-  padding: 16px 24px;
-  background-color: white;
+  padding: 24px 32px;
+  background-color: ${({ theme }) => theme.colors.GRAY_600};
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "legend legend"
+    "col-a col-b";
 
+  legend {
+    grid-area: legend;
+    margin-bottom: 24px;
+    color: ${({ theme }) => theme.colors.BLUE};
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+  }
 
+  fieldset {
+    padding-inline: 16px;
+    border: none;
+
+    > div {
+        display:flex;
+        gap: 16px;
+    }
+
+    button {
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      border: none;
+      width:100%;
+      height:46px;
+      margin-top: 24px;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 19px;
+      background-color: ${({ theme }) => theme.colors.BLUE};
+      color: ${({ theme }) => theme.colors.WHITE};
+      cursor: pointer;
+      transition: filter 0.2s ;
+      &:hover {
+        filter: brightness(0.8) ;
+      }
+    }
+  }
+
+  fieldset:nth-child(2) {
+    grid-area: col-a;
+  }
+  fieldset:nth-child(3) {
+    grid-area: col-b;
+  }
 `;

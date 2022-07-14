@@ -1,7 +1,7 @@
 import { Container } from "./styles";
 import { Tr } from "./Tr";
 
-export function Table({children = <Tr />}) {
+export function Table({ data }) {
   return (
     <Container>
       <thead>
@@ -13,10 +13,19 @@ export function Table({children = <Tr />}) {
         </tr>
       </thead>
       <tbody>
-        
-        {children}
-        
-      
+        {data.map((item) => {
+          if(item.isList){
+            return (
+              <Tr
+                image={item.url_image}
+                launch={item.launch}
+                name={item.name}
+                platform={item.platform}
+                key={item.name}
+              />
+            );
+          }
+        })}
       </tbody>
     </Container>
   );
