@@ -14,7 +14,6 @@ export const Container = styled.div`
   border-radius: 16px;
   box-shadow: ${({ theme }) => theme.shadow};
 
-
   > main {
     display: grid;
     grid-template-columns: 300px auto;
@@ -108,7 +107,7 @@ export const TableWrapper = styled.div`
 export const Form = styled.form`
   grid-area: form;
   margin-top: 88px;
-  margin-inline:100px;
+  margin-inline: 100px;
   border-radius: 16px;
   margin-bottom: 40px;
   padding: 24px 32px;
@@ -134,29 +133,9 @@ export const Form = styled.form`
     border: none;
 
     > div {
-        display:flex;
-        gap: 16px;
-    }
-
-    button {
-      display:flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 8px;
-      border: none;
-      width:100%;
-      height:46px;
-      margin-top: 24px;
-      font-weight: 700;
-      font-size: 16px;
-      line-height: 19px;
-      background-color: ${({ theme }) => theme.colors.BLUE};
-      color: ${({ theme }) => theme.colors.WHITE};
-      cursor: pointer;
-      transition: filter 0.2s ;
-      &:hover {
-        filter: brightness(0.8) ;
-      }
+      display: grid;
+      gap: 8px;
+      grid-template-columns: 1fr 1fr;
     }
   }
 
@@ -165,5 +144,26 @@ export const Form = styled.form`
   }
   fieldset:nth-child(3) {
     grid-area: col-b;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+    height: 46px;
+    margin-top: 24px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    background-color: ${({ theme }) => theme.colors.BLUE};
+    color: ${({ theme }) => theme.colors.WHITE};
+    cursor: pointer;
+    transition: filter 0.2s;
+    &:hover {
+      filter: brightness(0.8);
+    }
   }
 `;
