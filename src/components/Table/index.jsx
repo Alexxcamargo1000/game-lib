@@ -13,18 +13,17 @@ export function Table({ data }) {
         </tr>
       </thead>
       <tbody>
-        {data.map((item) => {
-          if(item.isList){
-            return (
-              <Tr
-                image={item.url_image}
-                launch={item.launch}
-                name={item.name}
-                platform={item.platform}
-                key={item.name}
-              />
-            );
-          }
+        {data.map((game) => {
+          return (
+            <Tr
+              key={`ID_${game.id}`}
+              image={game.url_image}
+              launch={game.launch}
+              name={game.name}
+              platform={game.platform}
+              id={game.id}
+            />
+          );
         })}
       </tbody>
     </Container>

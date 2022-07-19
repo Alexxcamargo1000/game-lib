@@ -14,21 +14,19 @@ import { Table } from "../../components/Table";
 import { Input } from "../../components/Input";
 import { Select } from "../../components/Select";
 
-import { datas } from "../../../datas.json";
-
 export function Home() {
+  const URL_GAMES = `http://localhost:3001/datas`;
+  const [games, setGames] = useState([{}]);
   const [url_image, setUrl_image] = useState("");
-  const [games, setGames] = useState([]);
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
   const [isFavorite, setIsfFavorite] = useState("");
   const [isMostExpectedGame, setIsMostExpectedGame] = useState("");
-  const [isList, setIsList] = useState("");
   const [launch, setLaunch] = useState("");
   const [platform, setPlatform] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:3001/datas`)
+    fetch(URL_GAMES)
       .then((data) => data.json())
       .then((res) => setGames(res));
   }, []);
@@ -37,19 +35,42 @@ export function Home() {
     (game) => game.isMostExpectedGame
   );
 
-  function handleSaveDatas() {
-    const dataObject = {
+  function handleSubmit() {
+    if (
+      (name,
+      url_image,
+      link,
+      launch,
+      platform,
+      isFavorite,
+      isMostExpectedGame === "")
+    ) {
+      return;
+    }
+
+    const id = games.length + 1;
+    const isFavoriteBoolean = eval(isFavorite || false);
+    const isMostExpectedGameBoolean = eval(isMostExpectedGame || false);
+    const newGame = {
+      id,
       url_image,
       name,
       link,
-      isFavorite,
-      isMostExpectedGame,
-      isList,
+      isFavorite: isFavoriteBoolean,
+      isMostExpectedGame: isMostExpectedGameBoolean,
       launch,
       platform,
     };
 
-    setGames(...games, dataObject);
+    fetch(URL_GAMES, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newGame),
+    })
+      .then((response) => response.json())
+      .then(alert("game cadastrado"));
   }
 
   return (
@@ -57,8 +78,8 @@ export function Home() {
       <Header>
         <Logo />
         <img
-          src="https://github.com/alexxcamargo1000.png"
-          alt="foto do usuário"
+          src="https://cdn-icons-png.flaticon.com/512/141/141070.png"
+          alt="imagem de um controle"
         />
       </Header>
 
@@ -99,7 +120,7 @@ export function Home() {
             <Table data={games} />
           </div>
         </TableWrapper>
-        <Form>
+        <Form method="post">
           <legend>Adicionar um jogo</legend>
           <fieldset>
             <Input
@@ -146,41 +167,30 @@ export function Home() {
             />
             <div>
               <Select
-                title="Add na Lista"
-                value={isList}
-                onChange={(e) => setIsList(e.target.value)}
-              >
-                {!isList && <option disabled value=""></option>}
-
-                <option value={true}>Sim</option>
-                <option value={false}>Não</option>
-              </Select>
-              <Select
                 title="Add Favoritos"
                 value={isFavorite}
                 onChange={(e) => setIsfFavorite(e.target.value)}
               >
                 {!isFavorite && <option disabled value=""></option>}
 
-                <option value={true}>Sim</option>
-                <option value={false}>Não</option>
+                <option value="true">Sim</option>
+                <option value="false">Não</option>
               </Select>
-            </div>
-            <div>
+
               <Select
-                title="Add Mais esperado"
+                title="Add  Mais esperado"
                 value={isMostExpectedGame}
                 onChange={(e) => setIsMostExpectedGame(e.target.value)}
               >
                 {!isMostExpectedGame && <option disabled value=""></option>}
 
-                <option value={true}>Sim</option>
-                <option value={false}>Não</option>
+                <option value="true">Sim</option>
+                <option value="false">Não</option>
               </Select>
-              <button type="button" onClick={handleSaveDatas}>
-                Salvar
-              </button>
             </div>
+            <button type="submit" onClick={handleSubmit}>
+              Salvar
+            </button>
           </fieldset>
         </Form>
       </main>

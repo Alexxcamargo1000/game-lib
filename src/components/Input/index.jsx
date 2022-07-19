@@ -3,7 +3,7 @@ export function Input({id, type, title, value, ...rest}) {
   return (
     <Container htmlFor={id}>
       <span>{title}</span>
-      <input type={type}  id={id} {...rest} value={value}/>
+      <input type={type}  id={id} {...rest} value={value} required/>
     </Container>
   )
 }

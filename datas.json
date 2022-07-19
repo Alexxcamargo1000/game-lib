@@ -1,27 +1,14 @@
 {
   "datas": [
     {
-      "id": "1",
+      "id": 1,
       "url_image": "https://macmagazine.com.br/wp-content/uploads/2022/03/11-call-of-duty-warzone.jpg",
       "name": "Warzone",
       "link": "#",
       "isFavorite": true,
       "isMostExpectedGame": true,
-      "isList": false,
-      "launch": "11/12/2019",
-      "platform": "Todas"
-    },
-    {
-      "id": "2",
-      "url_image": "https://macmagazine.com.br/wp-content/uploads/2022/03/11-call-of-duty-warzone.jpg",
-      "name": "Warzone",
-      "link": "#",
-      "isFavorite": true,
-      "isMostExpectedGame": false,
-      "isList": true,
       "launch": "11/12/2019",
       "platform": "Todas"
     }
-
   ]
 }

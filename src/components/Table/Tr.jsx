@@ -1,4 +1,15 @@
-export function Tr({image, name, platform, launch}) {
+export function Tr({id, image, name, platform, launch}) {
+
+  function remove() {
+    fetch(`http://localhost:3001/datas/${id}`, 
+    {
+      method: 'DELETE' 
+    }).then(()=> alert('deletado'))
+  }
+  function imageErro() {
+    alert("imagem invalida tente usar um url valido")
+  }
+
   return (
     <tr>
       <td>
@@ -6,6 +17,7 @@ export function Tr({image, name, platform, launch}) {
           <img
             src={image}
             alt=""
+            onError={imageErro}
           />
           <strong>{name}</strong>
         </div>
@@ -17,7 +29,7 @@ export function Tr({image, name, platform, launch}) {
         <span>{launch}</span>
       </td>
       <td>
-        <button>Remover</button>
+        <button onClick={remove}>Remover</button>
       </td>
     </tr>
   );
