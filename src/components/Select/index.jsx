@@ -6,18 +6,14 @@ const opts = [
   {value: 'PC'},
   {value: 'TODAS'},
 ]
-export function Select({ id, title, value, options = opts, ...rest }) {
+export function Select({ id, title, value, children, ...rest }) {
   
 
   return (
     <Container htmlFor={id}>
       <span>{title}</span>
       <select id={id} value={value} {...rest} >
-        {!value && <option disabled value=""></option>}
-        {options.map(option => {
-          return <option key={`id_${option.value}`} value={option.value}>{option.value}</option>
-        })}
-       
+        {children}
       </select>
     </Container>
   );

@@ -1,18 +1,9 @@
 {
   "datas": [
     {
+      "id": "1",
       "url_image": "https://macmagazine.com.br/wp-content/uploads/2022/03/11-call-of-duty-warzone.jpg",
       "name": "Warzone",
-      "link": "#",
-      "isFavorite": false,
-      "isMostExpectedGame": true,
-      "isList": false,
-      "launch": "11/12/2019",
-      "platform": "Todas"
-    },
-    {
-      "url_image": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_auto/ncom/en_US/games/switch/f/fall-guys-switch/hero",
-      "name": "Fall Guys",
       "link": "#",
       "isFavorite": true,
       "isMostExpectedGame": true,
@@ -21,8 +12,9 @@
       "platform": "Todas"
     },
     {
-      "url_image": "https://tm.ibxk.com.br/2015/03/06/06151856480054.jpg?ims=1200x675",
-      "name": "Overwatch",
+      "id": "2",
+      "url_image": "https://macmagazine.com.br/wp-content/uploads/2022/03/11-call-of-duty-warzone.jpg",
+      "name": "Warzone",
       "link": "#",
       "isFavorite": true,
       "isMostExpectedGame": false,
@@ -30,5 +22,6 @@
       "launch": "11/12/2019",
       "platform": "Todas"
     }
+
   ]
 }

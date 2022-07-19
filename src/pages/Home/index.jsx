@@ -18,6 +18,7 @@ import { datas } from "../../../datas.json";
 
 export function Home() {
   const [url_image, setUrl_image] = useState("");
+  const [games, setGames] = useState([]);
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
   const [isFavorite, setIsfFavorite] = useState("");
@@ -26,32 +27,29 @@ export function Home() {
   const [launch, setLaunch] = useState("");
   const [platform, setPlatform] = useState("");
 
-  const [info, setInfo] = useState([]);
-
-  const findLastExpectedGame = datas.findLast(
-    (item) => item.isMostExpectedGame
-  );
-  const options = [{ value: "sim" }, { value: "não" }];
-
   useEffect(() => {
-    console.log(info);
-    setInfo([...info]);
+    fetch(`http://localhost:3001/datas`)
+      .then((data) => data.json())
+      .then((res) => setGames(res));
   }, []);
 
-  function handleSaveDatas(e) {
-    e.preventDefault();
-    const data = {
-      url_image: url_image,
-      name: name,
-      link: link,
-      isFavorite: isFavorite,
-      isMostExpectedGame: isMostExpectedGame,
-      isList: isList,
-      launch: launch,
-      platform: platform,
+  const findLastExpectedGame = games.findLast(
+    (game) => game.isMostExpectedGame
+  );
+
+  function handleSaveDatas() {
+    const dataObject = {
+      url_image,
+      name,
+      link,
+      isFavorite,
+      isMostExpectedGame,
+      isList,
+      launch,
+      platform,
     };
-    setInfo([...info, data]);
-    console.log(info);
+
+    setGames(...games, dataObject);
   }
 
   return (
@@ -68,23 +66,27 @@ export function Home() {
         <ExpectedGame>
           <h2>Jogo mais esperado</h2>
 
-          <img src={findLastExpectedGame.url_image} alt="" />
-          <div>
-            <span>{findLastExpectedGame.launch}</span>
-            <span>NOVO</span>
-            <h1>{findLastExpectedGame.name}</h1>
-          </div>
+          {findLastExpectedGame && (
+            <>
+              <img src={findLastExpectedGame.url_image} alt="" />
+              <div>
+                <span>{findLastExpectedGame.launch}</span>
+                <span>NOVO</span>
+                <h1>{findLastExpectedGame.name}</h1>
+              </div>
+            </>
+          )}
         </ExpectedGame>
         <Favorites>
           <h2>Favoritos</h2>
           <Carousel>
-            {datas.map((item) => {
-              if (item.isFavorite) {
+            {games.map((game) => {
+              if (game.isFavorite) {
                 return (
                   <CarouselItem
-                    img={item.url_image}
-                    link={item.link}
-                    key={item.name}
+                    img={game.url_image}
+                    link={game.link}
+                    key={game.id}
                   />
                 );
               }
@@ -94,7 +96,7 @@ export function Home() {
         <TableWrapper>
           <h2>Minha lista de jogos</h2>
           <div className="scroll">
-            <Table data={datas} />
+            <Table data={games} />
           </div>
         </TableWrapper>
         <Form>
@@ -105,6 +107,7 @@ export function Home() {
               id="name"
               title="Nome"
               type="text"
+              value={name}
             />
             <Input
               onChange={(e) => setUrl_image(e.target.value)}
@@ -114,11 +117,17 @@ export function Home() {
             />
             <div>
               <Select
-                id="platform"
                 title="Plataforma"
-                onChange={(e) => setPlatform(e.target.value)}
                 value={platform}
-              />
+                onChange={(e) => setPlatform(e.target.value)}
+              >
+                {!platform && <option disabled value=""></option>}
+
+                <option value="XBOX">XBOX</option>
+                <option value="PS5">PS5</option>
+                <option value="PC">PC</option>
+                <option value="TODAS">TODAS</option>
+              </Select>
               <Input
                 onChange={(e) => setLaunch(e.target.value)}
                 id="date"
@@ -137,31 +146,42 @@ export function Home() {
             />
             <div>
               <Select
-                onChange={(e) => setIsMostExpectedGame(e.target.value)}
-                value={isMostExpectedGame}
-                id="expectedGame"
-                title="Add mais esperado"
-                options={options}
-              />
-              <Select
-                onChange={(e) => setIsfFavorite(e.target.value)}
-                value={isFavorite}
-                id="favorites"
-                title="Add nos Favoritos"
-                options={options}
-              />
-              <Select
-                onChange={(e) => setIsList(e.target.value)}
-                value={isList}
-                id="list"
                 title="Add na Lista"
-                options={options}
-              />
+                value={isList}
+                onChange={(e) => setIsList(e.target.value)}
+              >
+                {!isList && <option disabled value=""></option>}
+
+                <option value={true}>Sim</option>
+                <option value={false}>Não</option>
+              </Select>
+              <Select
+                title="Add Favoritos"
+                value={isFavorite}
+                onChange={(e) => setIsfFavorite(e.target.value)}
+              >
+                {!isFavorite && <option disabled value=""></option>}
+
+                <option value={true}>Sim</option>
+                <option value={false}>Não</option>
+              </Select>
+            </div>
+            <div>
+              <Select
+                title="Add Mais esperado"
+                value={isMostExpectedGame}
+                onChange={(e) => setIsMostExpectedGame(e.target.value)}
+              >
+                {!isMostExpectedGame && <option disabled value=""></option>}
+
+                <option value={true}>Sim</option>
+                <option value={false}>Não</option>
+              </Select>
+              <button type="button" onClick={handleSaveDatas}>
+                Salvar
+              </button>
             </div>
           </fieldset>
-          <button type="submit" onClick={handleSaveDatas}>
-            Salvar
-          </button>
         </Form>
       </main>
     </Container>

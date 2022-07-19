@@ -16,8 +16,8 @@ export const Container = styled.div`
 
   > main {
     display: grid;
-    grid-template-columns: 300px auto;
-    grid-template-rows: minmax(350px, auto) auto minmax(450px, auto);
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto;
     grid-template-areas:
       "main favorites"
       "main table"
