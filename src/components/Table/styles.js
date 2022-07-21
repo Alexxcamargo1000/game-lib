@@ -5,11 +5,23 @@ export const Container = styled.table`
   width: 100%;
   border-collapse: collapse;
 
+  @media (max-width: 600px) {
+    * {
+      font-size: 12px;
+    }
+  }
+
   img {
     width: 56px;
     height: 56px;
     border-radius: 10px;
     object-fit: cover;
+
+    @media (max-width: 700px) {
+      width: 24px;
+      height: 24px;
+      border-radius: 100%;
+    }
   }
 
   > thead {
@@ -37,22 +49,20 @@ export const Container = styled.table`
   > tbody {
     overflow-y: auto;
 
-    max-height:300px;
+    max-height: 300px;
 
     tr:nth-child(even) {
       background-color: ${({ theme }) => theme.colors.GRAY_500};
-
-   
     }
     tr:nth-child(odd) {
       background-color: ${({ theme }) => theme.colors.GRAY_600};
-      
+
       td {
-        border-block: 1px solid #B9B7B7;
+        border-block: 1px solid #b9b7b7;
       }
     }
 
-    tr:last-child  {
+    tr:last-child {
       td {
         border-bottom: none;
       }
@@ -64,12 +74,15 @@ export const Container = styled.table`
         border-radius: 0 0 0 16px;
       }
     }
-    
+
     td {
       color: ${({ theme }) => theme.colors.GRAY};
       padding: 16px;
       text-align: center;
       text-transform: uppercase;
+      @media (max-width: 600px) {
+        padding: 8px;
+      }
       div {
         display: flex;
         align-items: center;
@@ -78,7 +91,7 @@ export const Container = styled.table`
         strong {
           font-size: 14px;
         }
-      } 
+      }
 
       span {
         font-size: 14px;
@@ -88,13 +101,11 @@ export const Container = styled.table`
       button {
         text-transform: uppercase;
         border: none;
-        background-color:transparent;
+        background-color: transparent;
         color: ${({ theme }) => theme.colors.RED};
         font-weight: 700;
         cursor: pointer;
-
       }
     }
-    
   }
 `;

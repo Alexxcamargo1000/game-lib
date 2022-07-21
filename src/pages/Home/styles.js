@@ -5,17 +5,34 @@ export const Container = styled.div`
   max-width: 1440px;
   margin: 0 auto;
   min-height: 100vh;
-  padding-inline: 40px;
-  padding-bottom: 80px;
+  padding:20px;
+
+  @media (max-width: 600px) {
+    padding: 16px;
+  }
 
   > main {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 400px 1fr;
     grid-template-rows: auto auto auto;
     grid-template-areas:
       "main favorites"
       "main table"
       "main form";
+
+    @media (max-width: 1000px) {
+      grid-template-columns: 400px 1fr;
+      grid-template-rows: auto auto auto;
+      grid-template-areas:
+        "main favorites"
+        "table table"
+        "form form";
+    }
+
+    @media (max-width: 700px) {
+      display: flex;
+      flex-direction: column;
+    }
   }
 `;
 
@@ -35,7 +52,6 @@ export const Header = styled.header`
 
 export const ExpectedGame = styled.div`
   grid-area: main;
-  width: 300px;
   position: relative;
 
   > .fixed {
@@ -77,6 +93,10 @@ export const ExpectedGame = styled.div`
         text-transform: capitalize;
       }
     }
+
+    @media (max-width: 700px) {
+      max-width: 100%;
+    }
   }
 `;
 
@@ -86,13 +106,17 @@ export const Favorites = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+
+  @media (max-width: 700px) {
+      margin-top: 40px;
+    }
 `;
 
 export const TableWrapper = styled.div`
   margin-top: 60px;
+  grid-area: table;
 
   > .scroll {
-    max-width: 850px;
     max-height: 428px;
     border-radius: 0 0 16px 16px;
     overflow-y: auto;
@@ -117,6 +141,14 @@ export const Form = styled.form`
     "legend legend"
     "col-a col-b";
 
+  @media (max-width: 700px) {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 16px;
+    margin-top: 44px;
+
+  }
+
   legend {
     grid-area: legend;
     margin-bottom: 24px;
@@ -134,6 +166,10 @@ export const Form = styled.form`
       display: grid;
       gap: 8px;
       grid-template-columns: 1fr 1fr;
+      @media (max-width: 700px) {
+        display: flex;
+        flex-direction: column;
+      }
     }
   }
 
