@@ -11,6 +11,8 @@ import { Logo } from "../../components/Logo";
 import { Carousel } from "../../components/Carousel";
 import { CarouselItem } from "../../components/CarouselItem";
 import { Table } from "../../components/Table";
+import { Tr } from "../../components/Table/Tr";
+
 import { Input } from "../../components/Input";
 import { Select } from "../../components/Select";
 
@@ -35,7 +37,19 @@ export function Home() {
     (game) => game.isMostExpectedGame
   );
 
-  function handleSubmit() {
+  function clearForm() {
+    setIsMostExpectedGame("");
+    setIsfFavorite("");
+    setLaunch("");
+    setLink("");
+    setName("");
+    setPlatform("");
+    setUrl_image("");
+  }
+
+  function handleSubmit(e) {
+    console.log(isFavorite);
+
     if (
       (name,
       url_image,
@@ -47,10 +61,9 @@ export function Home() {
     ) {
       return;
     }
-
     const id = games.length + 1;
-    const isFavoriteBoolean = eval(isFavorite || false);
-    const isMostExpectedGameBoolean = eval(isMostExpectedGame || false);
+    const isFavoriteBoolean = eval(isFavorite);
+    const isMostExpectedGameBoolean = eval(isMostExpectedGame);
     const newGame = {
       id,
       url_image,
@@ -70,7 +83,23 @@ export function Home() {
       body: JSON.stringify(newGame),
     })
       .then((response) => response.json())
-      .then(alert("game cadastrado"));
+      .then((data) => {
+        alert("game cadastrado");
+        setGames([...games, data]);
+        clearForm();
+      });
+
+    e.preventDefault();
+  }
+
+  function remove(id) {
+    let filteredGames = games.filter((item) => item.id !== id);
+    fetch(`http://localhost:3001/datas/${id}`, {
+      method: "DELETE",
+    }).then(() => {
+        alert("game deletado");
+        setGames([...filteredGames]);
+      });
   }
 
   return (
@@ -85,18 +114,20 @@ export function Home() {
 
       <main>
         <ExpectedGame>
-          <h2>Jogo mais esperado</h2>
+          <div className="fixed">
+            <h2>Jogo mais esperado</h2>
 
-          {findLastExpectedGame && (
-            <>
-              <img src={findLastExpectedGame.url_image} alt="" />
-              <div>
-                <span>{findLastExpectedGame.launch}</span>
-                <span>NOVO</span>
-                <h1>{findLastExpectedGame.name}</h1>
-              </div>
-            </>
-          )}
+            {findLastExpectedGame && (
+              <>
+                <img src={findLastExpectedGame.url_image} alt="" />
+                <div className="content">
+                  <span>{findLastExpectedGame.launch}</span>
+                  <span>NOVO</span>
+                  <h1>{findLastExpectedGame.name}</h1>
+                </div>
+              </>
+            )}
+          </div>
         </ExpectedGame>
         <Favorites>
           <h2>Favoritos</h2>
@@ -117,7 +148,20 @@ export function Home() {
         <TableWrapper>
           <h2>Minha lista de jogos</h2>
           <div className="scroll">
-            <Table data={games} />
+            <Table>
+              {games.map((game) => {
+                return (
+                  <Tr
+                    key={`ID_${game.id}`}
+                    image={game.url_image}
+                    launch={game.launch}
+                    name={game.name}
+                    platform={game.platform}
+                    onClick={(e) => remove(game.id)}
+                  />
+                );
+              })}
+            </Table>
           </div>
         </TableWrapper>
         <Form method="post">
@@ -135,6 +179,7 @@ export function Home() {
               id="url_img"
               title="URL da imagem"
               type="text"
+              value={url_image}
             />
             <div>
               <Select
@@ -151,9 +196,10 @@ export function Home() {
               </Select>
               <Input
                 onChange={(e) => setLaunch(e.target.value)}
-                id="date"
+                id="launch"
                 title="Lançamento"
                 type="date"
+                value={launch}
               />
             </div>
           </fieldset>
@@ -164,6 +210,7 @@ export function Home() {
               id="link"
               title="Link da loja"
               type="text"
+              value={link}
             />
             <div>
               <Select
@@ -188,7 +235,7 @@ export function Home() {
                 <option value="false">Não</option>
               </Select>
             </div>
-            <button type="submit" onClick={handleSubmit}>
+            <button type="submit" onClick={(e) => handleSubmit(e)}>
               Salvar
             </button>
           </fieldset>

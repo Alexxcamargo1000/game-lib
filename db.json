@@ -9,6 +9,26 @@
       "isMostExpectedGame": true,
       "launch": "11/12/2019",
       "platform": "Todas"
+    },
+    {
+      "id": 2,
+      "url_image": "https://cdn1.epicgames.com/offer/50118b7f954e450f8823df1614b24e80/pt-BR_FallGuysSS1_OfferImage_2560x1440_2560x1440-0d2f178d6c01871df1b2e0d3a459ffd6",
+      "name": "fall guys",
+      "link": "https://codepen.io/alexxcamargo1000/pen/wvpQYOx",
+      "isFavorite": true,
+      "isMostExpectedGame": true,
+      "launch": "2022-07-21",
+      "platform": "XBOX"
+    },
+    {
+      "id": 3,
+      "url_image": "https://img.olhardigital.com.br/wp-content/uploads/2022/06/overwatch.jpg",
+      "name": "overwatch 2",
+      "link": "https://fantasy-utahraptor-8cd.notion.site/Cronograma-de-estudos-0f104c165c61415e87e67d0980a012d0",
+      "isFavorite": true,
+      "isMostExpectedGame": false,
+      "launch": "2022-10-04",
+      "platform": "TODAS"
     }
   ]
 }

@@ -1,4 +1,6 @@
 import { createGlobalStyle } from "styled-components";
+
+import bgImg from "../assets/bg.png";
 export const GlobalStyle = createGlobalStyle`
   * {
     margin:0;
@@ -7,8 +9,11 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    padding: 24px;
     font-family: 'Roboto', serif;
+    background-color: ${({ theme}) => theme.colors.WHITE};
+    /* background: url(${bgImg});
+    background-repeat: no-repeat;
+    background-size: cover; */
   }
 
   button {
@@ -21,4 +26,4 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 19px;
     color: ${({ theme }) => theme.colors.GRAY};
   }
-`
+`;

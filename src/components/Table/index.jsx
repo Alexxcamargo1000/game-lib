@@ -1,7 +1,8 @@
 import { Container } from "./styles";
-import { Tr } from "./Tr";
+import { useEffect } from "react";
 
-export function Table({ data }) {
+export function Table({ children }) {
+
   return (
     <Container>
       <thead>
@@ -13,18 +14,7 @@ export function Table({ data }) {
         </tr>
       </thead>
       <tbody>
-        {data.map((game) => {
-          return (
-            <Tr
-              key={`ID_${game.id}`}
-              image={game.url_image}
-              launch={game.launch}
-              name={game.name}
-              platform={game.platform}
-              id={game.id}
-            />
-          );
-        })}
+        {children}
       </tbody>
     </Container>
   );

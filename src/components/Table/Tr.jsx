@@ -1,11 +1,9 @@
-export function Tr({id, image, name, platform, launch}) {
+import { useEffect } from "react";
 
-  function remove() {
-    fetch(`http://localhost:3001/datas/${id}`, 
-    {
-      method: 'DELETE' 
-    }).then(()=> alert('deletado'))
-  }
+export function Tr({image, name, platform, launch, ...rest}) {
+
+
+
   function imageErro() {
     alert("imagem invalida tente usar um url valido")
   }
@@ -29,7 +27,7 @@ export function Tr({id, image, name, platform, launch}) {
         <span>{launch}</span>
       </td>
       <td>
-        <button onClick={remove}>Remover</button>
+        <button {...rest}>Remover</button>
       </td>
     </tr>
   );

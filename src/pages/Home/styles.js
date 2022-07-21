@@ -1,18 +1,12 @@
 import styled from "styled-components";
-import bgImg from "../../assets/bg.png";
 
 export const Container = styled.div`
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
   min-height: 100vh;
-  background: url(${bgImg});
   padding-inline: 40px;
   padding-bottom: 80px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 16px;
-  box-shadow: ${({ theme }) => theme.shadow};
 
   > main {
     display: grid;
@@ -21,7 +15,7 @@ export const Container = styled.div`
     grid-template-areas:
       "main favorites"
       "main table"
-      "form form";
+      "main form";
   }
 `;
 
@@ -42,46 +36,52 @@ export const Header = styled.header`
 export const ExpectedGame = styled.div`
   grid-area: main;
   width: 300px;
+  position: relative;
 
-  > img {
-    width: 100%;
-    height: 256px;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: ${({ theme }) => theme.shadow};
-  }
+  > .fixed {
+    position: sticky;
+    max-width: 300px;
+    top: 10px;
 
-  > div {
-    display: flex;
-    flex-direction: column;
-    margin-top: 16px;
-
-    span {
-      font-weight: 700;
-      font-size: 12px;
-      line-height: 14px;
+    img {
+      width: 100%;
+      height: 256px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: ${({ theme }) => theme.shadow};
     }
 
-    span:nth-child(1) {
-      color: ${({ theme }) => theme.colors.RED};
-      align-self: end;
-    }
-    span:nth-child(2) {
-      color: ${({ theme }) => theme.colors.BLUE};
-    }
+    .content {
+      display: flex;
+      flex-direction: column;
+      margin-top: 16px;
 
-    h1 {
-      font-size: 32px;
-      line-height: 38px;
-      letter-spacing: 0.04em;
-      text-transform: capitalize;
+      span {
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 14px;
+      }
+
+      span:nth-child(1) {
+        color: ${({ theme }) => theme.colors.RED};
+        align-self: end;
+      }
+      span:nth-child(2) {
+        color: ${({ theme }) => theme.colors.BLUE};
+      }
+
+      h1 {
+        font-size: 32px;
+        line-height: 38px;
+        letter-spacing: 0.04em;
+        text-transform: capitalize;
+      }
     }
   }
 `;
 
 export const Favorites = styled.div`
   grid-area: favorites;
-  padding-left: 105px;
   overflow: auto;
   &::-webkit-scrollbar {
     display: none;
@@ -89,7 +89,6 @@ export const Favorites = styled.div`
 `;
 
 export const TableWrapper = styled.div`
-  padding-left: 105px;
   margin-top: 60px;
 
   > .scroll {
@@ -107,9 +106,8 @@ export const TableWrapper = styled.div`
 export const Form = styled.form`
   grid-area: form;
   margin-top: 88px;
-  margin-inline: 100px;
-  border-radius: 16px;
   margin-bottom: 40px;
+  border-radius: 16px;
   padding: 24px 32px;
   background-color: ${({ theme }) => theme.colors.GRAY_600};
   display: grid;
