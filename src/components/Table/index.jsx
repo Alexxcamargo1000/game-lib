@@ -1,5 +1,4 @@
 import { Container } from "./styles";
-import { useEffect } from "react";
 
 export function Table({ children }) {
 

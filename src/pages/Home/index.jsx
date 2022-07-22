@@ -6,6 +6,7 @@ import {
   Favorites,
   TableWrapper,
   Form,
+  NotGame,
 } from "./styles";
 import { Logo } from "../../components/Logo";
 import { Carousel } from "../../components/Carousel";
@@ -15,6 +16,7 @@ import { Tr } from "../../components/Table/Tr";
 
 import { Input } from "../../components/Input";
 import { Select } from "../../components/Select";
+import GameSvg from "../../assets/game.svg";
 
 export function Home() {
   const URL_GAMES = `http://localhost:3001/datas`;
@@ -48,22 +50,24 @@ export function Home() {
   }
 
   function handleSubmit(e) {
-    console.log(isFavorite);
+    let id = 1;
+    if(games[games.length - 1] !== undefined) {
+      id = games[games.length - 1].id + 1
 
-    if (
-      (name,
-      url_image,
-      link,
-      launch,
-      platform,
-      isFavorite,
-      isMostExpectedGame === "")
-    ) {
-      return;
     }
-    const id = games.length + 1;
+
+    if(!name){return -1}
+    if(!url_image){return -1}
+    if(!link){return -1}
+    if(!launch){return -1}
+    if(!platform){return -1}
+    if(!isFavorite){return -1}
+    if(!isMostExpectedGame){return -1}
+
+
     const isFavoriteBoolean = eval(isFavorite);
     const isMostExpectedGameBoolean = eval(isMostExpectedGame);
+
     const newGame = {
       id,
       url_image,
@@ -97,22 +101,27 @@ export function Home() {
     fetch(`http://localhost:3001/datas/${id}`, {
       method: "DELETE",
     }).then(() => {
-        alert("game deletado");
-        setGames([...filteredGames]);
-      });
+      alert("game deletado");
+      setGames([...filteredGames]);
+    });
   }
 
   return (
     <Container>
       <Header>
         <Logo />
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/141/141070.png"
-          alt="imagem de um controle"
-        />
       </Header>
 
       <main>
+        {games[games.length - 1 ] === undefined 
+        ? (
+            <NotGame>
+              <h1>Cadastre um jogo</h1>
+              <img src={GameSvg} alt="duas pessoas jogando" />
+            </NotGame>
+          )
+        : (
+        <>
         <ExpectedGame>
           <div className="fixed">
             <h2>Jogo mais esperado</h2>
@@ -164,7 +173,9 @@ export function Home() {
             </Table>
           </div>
         </TableWrapper>
-        <Form method="post">
+        </>)  }
+
+        <Form>
           <legend>Adicionar um jogo</legend>
           <fieldset>
             <Input

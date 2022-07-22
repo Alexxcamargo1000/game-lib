@@ -5,7 +5,7 @@ export const Container = styled.div`
   max-width: 1440px;
   margin: 0 auto;
   min-height: 100vh;
-  padding:20px;
+  padding: 20px;
 
   @media (max-width: 600px) {
     padding: 16px;
@@ -40,7 +40,7 @@ export const Header = styled.header`
   grid-area: header;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding-block: 40px;
 
   > img {
@@ -108,8 +108,8 @@ export const Favorites = styled.div`
   }
 
   @media (max-width: 700px) {
-      margin-top: 40px;
-    }
+    margin-top: 40px;
+  }
 `;
 
 export const TableWrapper = styled.div`
@@ -146,7 +146,6 @@ export const Form = styled.form`
     flex-direction: column;
     padding: 12px 16px;
     margin-top: 44px;
-
   }
 
   legend {
@@ -200,4 +199,21 @@ export const Form = styled.form`
       filter: brightness(0.8);
     }
   }
+`;
+
+export const NotGame = styled.div`
+  grid-area: main;
+
+  align-self: center;
+
+  text-align: center;
+  h1 {
+    line-height: 42px;
+    margin-bottom:24px;
+  }
+
+  img {
+    width: 300px;
+  }
+
 `;
