@@ -209,11 +209,10 @@ export const NotGame = styled.div`
   text-align: center;
   h1 {
     line-height: 42px;
-    margin-bottom:24px;
+    margin-bottom: 24px;
   }
 
   img {
     width: 300px;
   }
-
 `;

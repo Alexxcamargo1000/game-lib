@@ -1,7 +1,6 @@
 import { Container } from "./styles";
 
 export function Table({ children }) {
-
   return (
     <Container>
       <thead>
@@ -12,9 +11,7 @@ export function Table({ children }) {
           <th>Ação</th>
         </tr>
       </thead>
-      <tbody>
-        {children}
-      </tbody>
+      <tbody>{children}</tbody>
     </Container>
   );
 }

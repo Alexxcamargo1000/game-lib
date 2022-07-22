@@ -1,22 +1,14 @@
-import { useEffect } from "react";
 
-export function Tr({image, name, platform, launch, ...rest}) {
-
-
-
+export function Tr({ image, name, platform, launch, ...rest }) {
   function imageErro() {
-    alert("imagem invalida tente usar um url valido")
+    alert("imagem invalida tente usar um url valido");
   }
 
   return (
     <tr>
       <td>
         <div>
-          <img
-            src={image}
-            alt=""
-            onError={imageErro}
-          />
+          <img src={image} alt="" onError={imageErro} />
           <strong>{name}</strong>
         </div>
       </td>

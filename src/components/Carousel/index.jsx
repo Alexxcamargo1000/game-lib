@@ -1,10 +1,8 @@
-import { createRef, useRef } from "react";
+import { useRef } from "react";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
-import { CarouselItem } from "../CarouselItem";
 import { Container, Buttons } from "./styles";
-export function Carousel({children}) {
-  const carousel = useRef(null)
-
+export function Carousel({ children }) {
+  const carousel = useRef(null);
 
   function handleItemRight(e) {
     e.preventDefault();
@@ -17,18 +15,16 @@ export function Carousel({children}) {
   }
   return (
     <>
-    <Container ref={carousel}>
-        {children}
-    </Container>
+      <Container ref={carousel}>{children}</Container>
 
-    <Buttons>
-      <button onClick={handleItemLeft}>
-        <FiArrowLeft size={24}/>
-      </button>
-      <button onClick={handleItemRight}>
-        <FiArrowRight size={24}/>
-      </button>
-    </Buttons>
+      <Buttons>
+        <button onClick={handleItemLeft}>
+          <FiArrowLeft size={24} />
+        </button>
+        <button onClick={handleItemRight}>
+          <FiArrowRight size={24} />
+        </button>
+      </Buttons>
     </>
   );
 }

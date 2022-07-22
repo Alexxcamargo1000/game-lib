@@ -51,19 +51,17 @@ export function Home() {
 
   function handleSubmit(e) {
     let id = 1;
-    if(games[games.length - 1] !== undefined) {
-      id = games[games.length - 1].id + 1
-
+    if (games[games.length - 1] !== undefined) {
+      id = games[games.length - 1].id + 1;
     }
 
-    if(!name){return -1}
-    if(!url_image){return -1}
-    if(!link){return -1}
-    if(!launch){return -1}
-    if(!platform){return -1}
-    if(!isFavorite){return -1}
-    if(!isMostExpectedGame){return -1}
-
+    if (!name) return -1;
+    if (!url_image) return -1;
+    if (!link) return -1;
+    if (!launch) return -1;
+    if (!platform) return -1;
+    if (!isFavorite) return -1;
+    if (!isMostExpectedGame) return -1;
 
     const isFavoriteBoolean = eval(isFavorite);
     const isMostExpectedGameBoolean = eval(isMostExpectedGame);
@@ -113,67 +111,66 @@ export function Home() {
       </Header>
 
       <main>
-        {games[games.length - 1 ] === undefined 
-        ? (
-            <NotGame>
-              <h1>Cadastre um jogo</h1>
-              <img src={GameSvg} alt="duas pessoas jogando" />
-            </NotGame>
-          )
-        : (
-        <>
-        <ExpectedGame>
-          <div className="fixed">
-            <h2>Jogo mais esperado</h2>
+        {games[games.length - 1] === undefined ? (
+          <NotGame>
+            <h1>Cadastre um jogo</h1>
+            <img src={GameSvg} alt="duas pessoas jogando" />
+          </NotGame>
+        ) : (
+          <>
+            <ExpectedGame>
+              <div className="fixed">
+                <h2>Jogo mais esperado</h2>
 
-            {findLastExpectedGame && (
-              <>
-                <img src={findLastExpectedGame.url_image} alt="" />
-                <div className="content">
-                  <span>{findLastExpectedGame.launch}</span>
-                  <span>NOVO</span>
-                  <h1>{findLastExpectedGame.name}</h1>
-                </div>
-              </>
-            )}
-          </div>
-        </ExpectedGame>
-        <Favorites>
-          <h2>Favoritos</h2>
-          <Carousel>
-            {games.map((game) => {
-              if (game.isFavorite) {
-                return (
-                  <CarouselItem
-                    img={game.url_image}
-                    link={game.link}
-                    key={game.id}
-                  />
-                );
-              }
-            })}
-          </Carousel>
-        </Favorites>
-        <TableWrapper>
-          <h2>Minha lista de jogos</h2>
-          <div className="scroll">
-            <Table>
-              {games.map((game) => {
-                return (
-                  <Tr
-                    key={`ID_${game.id}`}
-                    image={game.url_image}
-                    launch={game.launch}
-                    name={game.name}
-                    platform={game.platform}
-                    onClick={(e) => remove(game.id)}
-                  />
-                );
-              })}
-            </Table>
-          </div>
-        </TableWrapper>
-        </>)  }
+                {findLastExpectedGame && (
+                  <>
+                    <img src={findLastExpectedGame.url_image} alt="" />
+                    <div className="content">
+                      <span>{findLastExpectedGame.launch}</span>
+                      <span>NOVO</span>
+                      <h1>{findLastExpectedGame.name}</h1>
+                    </div>
+                  </>
+                )}
+              </div>
+            </ExpectedGame>
+            <Favorites>
+              <h2>Favoritos</h2>
+              <Carousel>
+                {games.map((game) => {
+                  if (game.isFavorite) {
+                    return (
+                      <CarouselItem
+                        img={game.url_image}
+                        link={game.link}
+                        key={game.id}
+                      />
+                    );
+                  }
+                })}
+              </Carousel>
+            </Favorites>
+            <TableWrapper>
+              <h2>Minha lista de jogos</h2>
+              <div className="scroll">
+                <Table>
+                  {games.map((game) => {
+                    return (
+                      <Tr
+                        key={`ID_${game.id}`}
+                        image={game.url_image}
+                        launch={game.launch}
+                        name={game.name}
+                        platform={game.platform}
+                        onClick={(e) => remove(game.id)}
+                      />
+                    );
+                  })}
+                </Table>
+              </div>
+            </TableWrapper>
+          </>
+        )}
 
         <Form>
           <legend>Adicionar um jogo</legend>
